@@ -15,9 +15,10 @@ def index(request):
 @csrf_exempt
 def home(request):
     data_rds = get_data_rds()
+    data_s3 = download_file_s3
     context = {
         'data_rds': data_rds,
-        'data_s3': data_rds
+        'data_s3': data_s3
     }
     return HttpResponse(render(request, '../templates/home.html', context))
 
@@ -41,6 +42,28 @@ def upload_rds(request):
         response = requests.post(url, json=data)
         if response.status_code == 200:
             messages.success(request, "Les données sont bien sauvegardé !")
+        else:
+            messages.error(request, "Erreur server!")
+        return HttpResponseRedirect(reverse('index'))
+
+# S3
+def download_file_s3():
+    url = f"{HOST}/aws_api/download_file"
+    response = requests.get(url)
+    return response.json()
+
+def upload_s3(request):
+    if request.method == 'POST':
+        form = request.POST
+        myfile = request.FILES['file']
+        file = {
+            "file": myfile
+        }
+        url = f"{HOST}/aws_api/upload_file"
+        print(file)
+        response = requests.post(url, files=file)
+        if response.status_code == 200:
+            messages.success(request, "Les fichier a bien été sauvegardé !")
         else:
             messages.error(request, "Erreur server!")
         return HttpResponseRedirect(reverse('index'))

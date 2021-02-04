@@ -73,8 +73,11 @@ def upload_file_s3(request):
     bucket = s3_resource.Bucket(AWS_BUCKET_NAME)
 
     if request.method == 'POST' and request.FILES['file']:
+
+        # print(request.body)
         myfile = request.FILES['file']
         file_name = myfile.name
+        print(file_name)
         bucket.put_object(Key=file_name, Body=myfile.read(), ACL='public-read')
 
     data = {
