@@ -1,0 +1,24 @@
+<div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Intervenant</th>
+          <th scope="col">Description</th>
+            <th scope="col">Nombre d'heure</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data_rds %}
+            <tr>
+              <th scope="row">{{ i.id }}</th>
+              <td>{{ i.nom }}</td>
+              <td>{{ i.intervenant }}</td>
+              <td>{{ i.description }}</td>
+                <td>{{ i.nb_heure }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
