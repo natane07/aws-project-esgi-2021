@@ -1,0 +1,27 @@
+<form class="row g-3" method="post" action="/aws_front_call_api/upload_rds">
+    {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputNom" class="form-label">Nom</label>
+    <input type="text" class="form-control" id="inputNom" name="nom">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputIntervenant" class="form-label">Intervenant</label>
+    <input type="text" class="form-control" id="inputIntervenant" name="intervenant">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputDescription" class="form-label">Description</label>
+    <input type="text" class="form-control" id="inputDescription" name="description">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputNbHeure" class="form-label">Nombre d'heure</label>
+    <input type="text" class="form-control" id="inputNbHeure" name="nb_heure">
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+  </div>
+
+</form>
